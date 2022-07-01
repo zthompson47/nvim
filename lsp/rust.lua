@@ -1,6 +1,6 @@
-local nvim_lsp = require'lspconfig'
+--local nvim_lsp = require'lspconfig'
 
-local opts = {
+require('rust-tools').setup({
     tools = {
         autoSetHints = true,
         hover_with_actions = true,
@@ -16,13 +16,23 @@ local opts = {
                 checkOnSave = {
                     command = "clippy",
                 },
+                completion = {
+                    callable = {
+                        snippets = "add_parentheses",
+                    },
+                },
+                cargo = {
+                    loadOutDirsFromCheck = true,
+                },
+                procMacro = {
+                    enable = true,
+                },
             },
         },
     },
-}
-require('rust-tools').setup(opts)
+})
 
-local opts = { noremap=true, silent=true }
+local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<c-]>', vim.lsp.buf.definition, opts)
 vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
 vim.keymap.set('n', 'gD', vim.lsp.buf.implementation, opts)
@@ -39,14 +49,3 @@ vim.keymap.set('n', '<space>/', vim.lsp.buf.document_symbol, opts)
 vim.keymap.set('n', '<space><space>', vim.lsp.buf.references, opts)
 vim.keymap.set('n', 'g[', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', 'g]', vim.diagnostic.goto_next, opts)
-
---[[
--- Enable diagnostics
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, {
-    virtual_text = true,
-    signs = true,
-    update_in_insert = true,
-  }
-)
-]]--

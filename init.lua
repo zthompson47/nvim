@@ -45,7 +45,7 @@ vim.api.nvim_exec(
   set colorcolumn=101
 ]], false)
 
-require "plugins/plug"
+require "plug"
 
 require "colors"
 require "statusline"

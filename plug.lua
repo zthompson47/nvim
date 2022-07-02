@@ -20,9 +20,9 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'ray-x/lsp_signature.nvim'
 vim.call('plug#end')
 
-require "plugins/treesitter"
-require "plugins/telescope"
+require "treesitter"
+require "telescope"
 require "lsp/lua"
 require "lsp/rust"
-require "plugins/completion"
-require "plugins/signature"
+require "completion"
+require "signature"

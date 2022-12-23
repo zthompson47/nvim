@@ -47,7 +47,9 @@ bo.tabstop = 4
 vim.api.nvim_exec(
 [[
   set colorcolumn=101
-  "set mouse=a
+  set mouse=nvi
+  :map <ScrollWheelUp> <C-Y>
+  :map <ScrollWheelDown> <C-E>
 ]], false)
 
 require "plug"

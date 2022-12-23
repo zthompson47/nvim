@@ -6,18 +6,22 @@ local cmp = require 'cmp'
 cmp.setup({
     --    window = {
     --    },
---    snippet = {
---        expand = function(args)
---            vim.fn["vsnip#anonymous"](args.body)
---        end,
---    },
+    snippet = {
+        expand = function(args)
+            vim.fn["vsnip#anonymous"](args.body)
+        end,
+    },
     mapping = {
-        ['<C-k>'] = cmp.mapping.select_prev_item(),
-        ['<C-j>'] = cmp.mapping.select_next_item(),
-        ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-        ['<Tab>'] = cmp.mapping.select_next_item(),
-        ['<C-m>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-n>'] = cmp.mapping.scroll_docs(4),
+        ['<C-k>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 'c' }),
+        ['<C-j>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 'c' }),
+        ['<S-Tab>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 'c' }),
+        ['<Tab>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 'c' }),
+        --['<C-m>'] = cmp.mapping.scroll_docs(-4),
+        --['<C-n>'] = cmp.mapping.scroll_docs(4),
+
+        ['<C-i>'] = cmp.mapping.scroll_docs(-1),
+        ['<C-u>'] = cmp.mapping.scroll_docs(1),
+
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.close(),
         --['<C-a>'] = cmp.mapping.confirm({
@@ -25,7 +29,8 @@ cmp.setup({
         --    select = true,
         --}),
         ['<CR>'] = cmp.mapping.confirm({
-            behavior = cmp.ConfirmBehavior.Insert,
+            --behavior = cmp.ConfirmBehavior.Insert,
+            behavior = cmp.ConfirmBehavior.Replace,
             select = true,
         }),
     },
@@ -47,26 +52,12 @@ cmp.setup({
 --})
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
---cmp.setup.cmdline(':', {
---    mapping = cmp.mapping.preset.cmdline(),
---    sources = cmp.config.sources({
---        { name = 'path' }
---    }, {
---        { name = 'cmdline' }
---    })
---})
-
--- Disable completion in comments.  TODO: doesn't work!
-cmp.setup({
-    enabled = function()
-        -- disable completion in comments
-        local context = require 'cmp.config.context'
-        -- keep command mode completion enabled when cursor is in a comment
-        if vim.api.nvim_get_mode().mode == 'c' then
-            return true
-        else
-            return not context.in_treesitter_capture("comment")
-                and not context.in_syntax_group("Comment")
-        end
-    end
+cmp.setup.cmdline(':', {
+    --mapping = cmp.mapping.preset.cmdline(),
+    mapping = cmp.setup.mapping,
+    sources = cmp.config.sources({
+        { name = 'path' }
+    }, {
+        { name = 'cmdline' }
+    })
 })

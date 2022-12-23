@@ -26,6 +26,7 @@ require('rust-tools').setup({
         },
     },
     server = {
+        --autostart = false,
         settings = {
             ["rust-analyzer"] = {
                 cache = {
@@ -47,7 +48,7 @@ require('rust-tools').setup({
                 },
                 diagnostics = {
                     experimental = {
-                        enable = true,
+                        enable = false,
                     },
                 },
                 hover = {
@@ -61,7 +62,7 @@ require('rust-tools').setup({
                     capacity = 32,
                 },
                 procMacro = {
-                    enable = true,
+                    enable = false,
                 },
                 runnables = {
                     extraArgs = { "--jobs", "3" },

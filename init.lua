@@ -9,6 +9,8 @@ vim.api.nvim_exec(
   let g:loaded_perl_provider = 0
 ]], false)
 
+vim.g.mapleader = " "
+
 local o = vim.o
 local wo = vim.wo
 local bo = vim.bo
@@ -24,6 +26,7 @@ o.swapfile = false
 o.termguicolors = true
 o.title = true
 o.titlestring = "%t %F"
+o.updatetime = 500
 
 -- Window-local options
 -- vim.wo.colorcolumn = 101 -- doesn't work, exec'd below..
@@ -31,6 +34,7 @@ wo.cursorline = true
 wo.number = true
 wo.relativenumber = true
 wo.scrolloff = 1
+wo.wrap = false
 
 -- Buffer-local options
 bo.expandtab = true
@@ -43,10 +47,10 @@ bo.tabstop = 4
 vim.api.nvim_exec(
 [[
   set colorcolumn=101
+  "set mouse=a
 ]], false)
 
 require "plug"
-
 require "colors"
 require "statusline"
 require "mappings"

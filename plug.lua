@@ -11,17 +11,17 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'nvim-lua/plenary.nvim'
-Plug('nvim-telescope/telescope-fzf-native.nvim', { ['do'] =
-'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && ' ..
-    'cmake --build build --config Release && ' ..
-    'cmake --install build --prefix build'
-})
-Plug 'nvim-telescope/telescope.nvim'
+--Plug('nvim-telescope/telescope-fzf-native.nvim', { ['do'] =
+--'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && ' ..
+--    'cmake --build build --config Release && ' ..
+--    'cmake --install build --prefix build'
+--})
+--Plug 'nvim-telescope/telescope.nvim'
 Plug 'ray-x/lsp_signature.nvim'
 vim.call('plug#end')
 
-require "treesitter"
-require "telescope"
+--require "treesitter"
+--require "telescope"
 require "lsp/lua"
 require "lsp/rust"
 require "completion"

@@ -1,16 +1,16 @@
 -- set completeopt=menuone,noinsert,noselect
---vim.cmd[[set completeopt=menu,menuone,noselect]]
---vim.cmd[[set shortmess+=c]]
+vim.cmd[[set completeopt=menu,menuone,noselect]]
+vim.cmd[[set shortmess+=c]]
 
 local cmp = require 'cmp'
 cmp.setup({
     --    window = {
     --    },
-    snippet = {
-        expand = function(args)
-            vim.fn["vsnip#anonymous"](args.body)
-        end,
-    },
+--    snippet = {
+--        expand = function(args)
+--            vim.fn["vsnip#anonymous"](args.body)
+--        end,
+--    },
     mapping = {
         ['<C-k>'] = cmp.mapping.select_prev_item(),
         ['<C-j>'] = cmp.mapping.select_next_item(),
@@ -20,41 +20,41 @@ cmp.setup({
         ['<C-n>'] = cmp.mapping.scroll_docs(4),
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.close(),
-        ['<C-u>'] = cmp.mapping.confirm({
+        --['<C-a>'] = cmp.mapping.confirm({
+        --    behavior = cmp.ConfirmBehavior.Insert,
+        --    select = true,
+        --}),
+        ['<CR>'] = cmp.mapping.confirm({
             behavior = cmp.ConfirmBehavior.Insert,
             select = true,
         }),
-        --[[ ['<CR>'] = cmp.mapping.confirm({
-            behavior = cmp.ConfirmBehavior.Insert,
-            select = true,
-        }), ]] --
     },
     sources = {
         { name = 'nvim_lsp' },
-        { name = 'vsnip' },
+        --{ name = 'vsnip' },
         { name = 'path' },
-        { name = 'buffer' },
-        { name = 'cmdline' },
+        --{ name = 'buffer' },
+        --{ name = 'cmdline' },
     },
 })
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline('/', {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = {
-        { name = 'buffer' }
-    }
-})
+--cmp.setup.cmdline('/', {
+--    mapping = cmp.mapping.preset.cmdline(),
+--    sources = {
+--        { name = 'buffer' }
+--    }
+--})
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline(':', {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources({
-        { name = 'path' }
-    }, {
-        { name = 'cmdline' }
-    })
-})
+--cmp.setup.cmdline(':', {
+--    mapping = cmp.mapping.preset.cmdline(),
+--    sources = cmp.config.sources({
+--        { name = 'path' }
+--    }, {
+--        { name = 'cmdline' }
+--    })
+--})
 
 -- Disable completion in comments.  TODO: doesn't work!
 cmp.setup({

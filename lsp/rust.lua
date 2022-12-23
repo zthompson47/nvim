@@ -19,9 +19,8 @@ vim.keymap.set('n', 'g]', vim.diagnostic.goto_next, opts)
 require('rust-tools').setup({
     tools = {
         autoSetHints = true,
-        hover_with_actions = true,
         inlay_hints = {
-            show_parameter_hints = false,
+            show_parameter_hints = true,
             parameter_hints_prefix = "",
             other_hints_prefix = "",
         },
@@ -29,6 +28,15 @@ require('rust-tools').setup({
     server = {
         settings = {
             ["rust-analyzer"] = {
+                cache = {
+                    warmup = false,
+                },
+                cachePriming = {
+                    numThreads = 3,
+                },
+                cargo = {
+                    loadOutDirsFromCheck = true,
+                },
                 checkOnSave = {
                     command = "clippy",
                 },
@@ -42,11 +50,21 @@ require('rust-tools').setup({
                         enable = true,
                     },
                 },
-                cargo = {
-                    loadOutDirsFromCheck = true,
+                hover = {
+                    actions = {
+                        references = {
+                            enable = true,
+                        },
+                    },
+                },
+                lru = {
+                    capacity = 32,
                 },
                 procMacro = {
                     enable = true,
+                },
+                runnables = {
+                    extraArgs = { "--jobs", "3" },
                 },
             },
         },

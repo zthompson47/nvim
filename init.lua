@@ -17,7 +17,7 @@ local bo = vim.bo
 
 -- Global options
 o.autochdir = true -- might break plugins: ':h autochdir'
-o.laststatus = 0 -- Status bar on split screen only
+--o.laststatus = 0 -- Status bar on split screen only, now set below..
 o.matchtime = 2
 o.ruler = true
 o.showmatch = true
@@ -46,14 +46,21 @@ bo.tabstop = 4
 -- Commands missing or broken or ? from lua api
 vim.api.nvim_exec(
 [[
+
   set colorcolumn=101
   set mouse=nvi
-  :map <ScrollWheelUp> <C-Y>
-  :map <ScrollWheelDown> <C-E>
+  :map <ScrollWheelUp> 2<C-Y>
+  :map <ScrollWheelDown> 2<C-E>
+
+  set laststatus=0
+  "hi! link StatusLine Normal
+  "hi! link StatusLineNC Normal
+  set statusline=%{repeat('─',winwidth('.'))}
+
 ]], false)
 
 require "plug"
 require "colors"
-require "statusline"
+--require "statusline"
 require "mappings"
 require "extra"

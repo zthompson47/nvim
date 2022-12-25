@@ -62,7 +62,7 @@ require('rust-tools').setup({
                     capacity = 32,
                 },
                 procMacro = {
-                    enable = false,
+                    enable = true,
                 },
                 runnables = {
                     extraArgs = { "--jobs", "3" },

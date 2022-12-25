@@ -9,10 +9,14 @@ vim.api.nvim_exec(
 -- Make split screens monotone with thin-line borders.
 vim.api.nvim_exec(
 [[
-  hi VertSplit ctermbg=DarkGrey ctermfg=Black guifg=#000000 guibg=#555555
-  hi StatusLine cterm=underline ctermbg=Black ctermfg=Grey guifg=#888888 guibg=#000000
-  hi StatusLineNC cterm=underline ctermbg=Black ctermfg=Grey guifg=#888888 guibg=#000000
-  hi User1 cterm=underline ctermbg=Black ctermfg=Grey gui=underline guifg=#888888 guibg=#000000
+  hi VertSplit guifg=#555555 guibg=#000000
+  hi StatusLine guifg=#000000 guibg=#555555
+  hi StatusLineNC guifg=#000000 guibg=#555555
+
+  "hi VertSplit ctermbg=DarkGrey ctermfg=Black guifg=#000000 guibg=#555555
+  "hi StatusLine cterm=underline ctermbg=Black ctermfg=Grey guifg=#888888 guibg=#000000
+  "hi StatusLineNC cterm=underline ctermbg=Black ctermfg=Grey guifg=#888888 guibg=#000000
+  "hi User1 cterm=underline ctermbg=Black ctermfg=Grey gui=underline guifg=#888888 guibg=#000000
 ]], false)
 
 vim.api.nvim_exec(

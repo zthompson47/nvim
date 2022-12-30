@@ -49,25 +49,9 @@ hi LspDiagnosticsUnderlineWarning guifg=NONE ctermfg=NONE cterm=italic gui=itali
 hi LspDiagnosticsUnderlineInformation guifg=NONE ctermfg=NONE cterm=italic gui=italic
 hi LspDiagnosticsUnderlineHint guifg=NONE ctermfg=NONE cterm=italic gui=italic
 
-
-
-
 hi DiagnosticUnderlineError cterm=NONE gui=italic guisp=Red
 hi DiagnosticUnderlineWarn cterm=NONE gui=italic guisp=Orange
 hi DiagnosticUnderlineInfo cterm=NONE gui=italic guisp=LightBlue
 hi DiagnosticUnderlineHint cterm=NONE gui=italic guisp=LightGrey
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ]], false)

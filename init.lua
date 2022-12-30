@@ -49,13 +49,22 @@ vim.api.nvim_exec(
 
   set colorcolumn=101
   set mouse=nvi
-  :map <ScrollWheelUp> 2<C-Y>
-  :map <ScrollWheelDown> 2<C-E>
+  :map <ScrollWheelUp> <C-Y>
+  :map <ScrollWheelDown> <C-E>
+  :map <S-ScrollWheelUp> 3<C-Y>
+  :map <S-ScrollWheelDown> 3<C-E>
 
   set laststatus=0
   "hi! link StatusLine Normal
   "hi! link StatusLineNC Normal
   set statusline=%{repeat('─',winwidth('.'))}
+
+  function! SynStack()
+    if !exists("*synstack")
+      return
+    endif
+    echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+  endfunc
 
 ]], false)
 

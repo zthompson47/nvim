@@ -26,7 +26,7 @@ require('rust-tools').setup({
         },
     },
     server = {
-        --autostart = false,
+        autostart = false,
         settings = {
             ["rust-analyzer"] = {
                 cache = {

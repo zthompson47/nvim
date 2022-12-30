@@ -44,7 +44,7 @@ vim.api.nvim_exec(
   " Quickly quit all windows
   map Q :qa<CR>
 
-  " Always use system clipboard (via 'xclip' arch package)
+  " Always use system clipboard (via '~/build/wl-clipboard/' arch package)
   set clipboard+=unnamedplus
 
   " Do not insert comments automatically on newline

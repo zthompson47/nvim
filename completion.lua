@@ -29,7 +29,7 @@ cmp.setup({
         --    select = true,
         --}),
         ['<CR>'] = cmp.mapping.confirm({
-            behavior = cmp.ConfirmBehavior.Insert,
+            --behavior = cmp.ConfirmBehavior.Insert,
             --behavior = cmp.ConfirmBehavior.Replace,
             select = true,
         }),

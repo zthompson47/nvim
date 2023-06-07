@@ -1,1 +1,1 @@
-au BufNewFile,BufRead *.wgsl set filetype=wgsl
+autocmd BufRead,BufNewFile *.wgsl setfiletype wgsl

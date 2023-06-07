@@ -1,7 +1,6 @@
 package.path = package.path .. ";/home/zach/.config/nvim/?.lua"
 
-vim.api.nvim_exec(
-[[
+vim.api.nvim_exec([[
   let g:loaded_python_provider = 0
   let g:loaded_python3_provider = 0
   let g:loaded_ruby_provider = 0
@@ -33,7 +32,7 @@ o.updatetime = 500
 wo.cursorline = true
 wo.number = true
 wo.relativenumber = true
-wo.scrolloff = 1
+wo.scrolloff = 2
 wo.wrap = false
 
 -- Buffer-local options
@@ -45,31 +44,33 @@ bo.tabstop = 4
 
 -- Commands missing or broken or ? from lua api
 vim.api.nvim_exec(
-[[
+    [[
 
   set colorcolumn=101
   set mouse=nvi
-  :map <ScrollWheelUp> <C-Y>
-  :map <ScrollWheelDown> <C-E>
-  :map <S-ScrollWheelUp> 3<C-Y>
-  :map <S-ScrollWheelDown> 3<C-E>
+  :map <ScrollWheelUp> 2<C-Y>
+  :map <ScrollWheelDown> 2<C-E>
+  :map <S-ScrollWheelUp> 4<C-Y>
+  :map <S-ScrollWheelDown> 4<C-E>
 
   set laststatus=0
   "hi! link StatusLine Normal
   "hi! link StatusLineNC Normal
   set statusline=%{repeat('─',winwidth('.'))}
 
-  function! SynStack()
-    if !exists("*synstack")
-      return
-    endif
-    echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-  endfunc
+"  function! SynStack()
+"    if !exists("*synstack")
+"      return
+"    endif
+"    echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+"  endfunc
 
 ]], false)
 
 require "plug"
-require "colors"
+--require "colors"
 --require "statusline"
 require "mappings"
 require "extra"
+
+vim.cmd.colorscheme("allotropic")

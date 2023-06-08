@@ -1,76 +1,59 @@
 package.path = package.path .. ";/home/zach/.config/nvim/?.lua"
 
-vim.api.nvim_exec([[
-  let g:loaded_python_provider = 0
-  let g:loaded_python3_provider = 0
-  let g:loaded_ruby_provider = 0
-  let g:loaded_node_provider = 0
-  let g:loaded_perl_provider = 0
-]], false)
-
+-- Global variables
+vim.g.loaded_python_provider = 0
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_node_provider = 0
+vim.g.loaded_perl_provider = 0
 vim.g.mapleader = " "
 
-local o = vim.o
-local wo = vim.wo
-local bo = vim.bo
+-- General settings
+vim.o.autochdir = true -- might break plugins: ':h autochdir'
+vim.o.matchtime = 2
+vim.o.ruler = true
+vim.o.showmatch = true
+vim.o.signcolumn = 'number'
+vim.o.swapfile = false
+vim.o.termguicolors = true
+vim.o.title = true
+vim.o.titlestring = "%t %F"
+vim.o.updatetime = 500
 
--- Global options
-o.autochdir = true -- might break plugins: ':h autochdir'
---o.laststatus = 0 -- Status bar on split screen only, now set below..
-o.matchtime = 2
-o.ruler = true
-o.showmatch = true
-o.signcolumn = 'number'
-o.swapfile = false
-o.termguicolors = true
-o.title = true
-o.titlestring = "%t %F"
-o.updatetime = 500
+-- Window-scoped options
+vim.wo.cursorline = true
+vim.wo.number = true
+vim.wo.relativenumber = true
+vim.wo.scrolloff = 2
+vim.wo.wrap = false
 
--- Window-local options
--- vim.wo.colorcolumn = 101 -- doesn't work, exec'd below..
-wo.cursorline = true
-wo.number = true
-wo.relativenumber = true
-wo.scrolloff = 2
-wo.wrap = false
+-- Buffer-scoped options
+vim.bo.expandtab = true
+vim.bo.matchpairs = "(:),{:},[:],<:>"
+vim.bo.shiftwidth = 4
+vim.bo.softtabstop = 4
+vim.bo.tabstop = 4
 
--- Buffer-local options
-bo.expandtab = true
-bo.matchpairs = "(:),{:},[:],<:>"
-bo.shiftwidth = 4
-bo.softtabstop = 4
-bo.tabstop = 4
+-- Set options
+vim.opt.colorcolumn = "101"
+vim.opt.mouse = "nvi"
+vim.opt.laststatus = 0
+vim.opt.statusline = "%{repeat('─',winwidth('.'))}"
 
--- Commands missing or broken or ? from lua api
-vim.api.nvim_exec(
-    [[
+-- Mouse scrolling
+vim.cmd.map("<ScrollWheelUp> 2<C-Y>")
+vim.cmd.map("<ScrollWheelDown> 2<C-E>")
+vim.cmd.map("<S-ScrollWheelUp> 4<C-Y>")
+vim.cmd.map("<S-ScrollWheelDown> 4<C-E>")
 
-  set colorcolumn=101
-  set mouse=nvi
-  :map <ScrollWheelUp> 2<C-Y>
-  :map <ScrollWheelDown> 2<C-E>
-  :map <S-ScrollWheelUp> 4<C-Y>
-  :map <S-ScrollWheelDown> 4<C-E>
-
-  set laststatus=0
-  "hi! link StatusLine Normal
-  "hi! link StatusLineNC Normal
-  set statusline=%{repeat('─',winwidth('.'))}
-
-"  function! SynStack()
-"    if !exists("*synstack")
-"      return
-"    endif
-"    echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-"  endfunc
-
-]], false)
+-- Keymap
+vim.cmd.inoremap("jj <ESC>")
+vim.cmd.inoremap("zk <ESC>:w<CR>")
+vim.cmd.nnoremap("zk :w<CR>")
+vim.cmd.nnoremap("z. :LspStart<CR>")
+vim.cmd.nnoremap("z, :LspStop<CR>")
 
 require "plug"
---require "colors"
---require "statusline"
-require "mappings"
 require "extra"
 
 vim.cmd.colorscheme("allotropic")

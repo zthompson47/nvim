@@ -14,7 +14,7 @@ vim.api.nvim_exec(
 -- Expose lines ending with extra whitespace.
 vim.api.nvim_exec(
 [[
-  highlight BadWhitespace guibg=Red
+  "highlight BadWhitespace guibg=Red
   match BadWhitespace /^\t\+/
   match BadWhitespace /\s\+\%#\@<!$/
 ]], false)
@@ -49,15 +49,4 @@ vim.api.nvim_exec(
 
   " Do not insert comments automatically on newline
   autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-]], false)
-
-vim.api.nvim_exec(
-[[
-    syntax off
-
-"function! SynGroup()
-"    let l:s = synID(line('.'), col('.'), 1)
-"    echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
-"endfun
-
 ]], false)

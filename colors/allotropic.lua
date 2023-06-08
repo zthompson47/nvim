@@ -11,6 +11,8 @@ hi("Normal", { fg = "White", bg = "Black" })
 hi("NormalFloat", { link = "Normal" })
 hi("NormalNC", { link = "Normal" })
 
+hi("BadWhitespace", { bg="Red" })
+
 -- ~=~ Cursor crosshairs
 hi("ColorColumn", { bg = "#222233" })
 hi("CursorLine", { bg = "#1b1b2b" })
@@ -26,54 +28,80 @@ hi("Pmenu", { bg = "#222222" })
 hi("PmenuSel", { bg = "#444444", bold = true, fg = "Yellow" })
 hi("PmenuThumb", { bg = "#004400" })
 hi("PmenuSbar", { bg = "#664400" })
+--PmenuKind	Popup menu: Normal item "kind".
+--PmenuKindSel	Popup menu: Selected item "kind".
+--PmenuExtra	Popup menu: Normal item "extra text".
+--PmenuExtraSel	Popup menu: Selected item "extra text".
 
-hi("DiagnosticError", { fg = "#dd1a1a" })
+hi("EndOfBuffer", { fg = "Magenta" })
 hi("ErrorMsg", { bg = "#444444", bold = true, fg = "Yellow" })
 hi("SignColumn", { bg = "Black" })
+hi("Todo", { fg = "Blue", bg = "Yellow" })
 hi("Visual", { bg = "#444444" })
 
-hi("Todo", { fg = "Blue", bg = "Yellow" })
+local bold_on = false
 
 -- ~=~ Colors
-local Attribute = { fg = "Red" }
+local Attribute = { fg = "#aaaaaa" }
+local Cfg = { fg = "#aaaae8" }
 local Comment = { fg = "#a4c8ff" }
 local Constant = { fg = "#ffa4dd" }
 local CrateRoot = { fg = "#ecd9db" }
 local Error = { fg = "#ffffff", bg = "Magenta" }
-local Delimiter = { fg = "Orange", bold = true }
-local Enum = { fg = "#f900a4", bold = true }
+local Delimiter = { fg = "Orange", bold = bold_on }
+--local Enum = { fg = "#f900a4", bold = bold_on }
+local Enum = { fg = "#ffff00", bold = bold_on }
+local Field = { fg = "#00cc00" }
 local Function = { fg = "#00afff" }
-local Identifier = { fg = "#40ffff", bold = true }
+local Identifier = { fg = "#40ffff", bold = bold_on }
 local Namespace = { fg = "#cc99fb" }
 local Parameter = { fg = "#88ccff" }
 local PreProc = { fg = "#ff80ff" }
-local Statement = { fg = "#ffff60", bold = true }
-local Structure = { fg = "#c952ff", bold = true }
-local Title = { fg = "Magenta", bold = true }
-local Trait = { fg = "#f955a4", bold = true }
+local Statement = { fg = "#ffff60", bold = bold_on }
+--local Structure = { fg = "#c952ff", bold = true }
+--local Structure = { fg = "#ffaa00", bold = bold_on }
+local Structure = { fg = "#ff8800", bold = bold_on }
+local Title = { fg = "Magenta", bold = bold_on }
+--local Trait = { fg = "#f955a4", bold = bold_on }
+local Trait = { fg = "#00ffff", bold = bold_on }
 local Type = { fg = "#70ef70" }
-local TypeAlias = { fg = "#b868d8" }
-local Variable = { fg = "#ff8800" }
+local TypeAlias = { fg = "#cccccc" }
+--local Variable = { fg = "#ff8800" }
+local Variable = { fg = "#40efff" }
 
+hi("Boolean", Constant)
+--Character
 hi("Comment", Comment)
+-- Conditional
 hi("Constant", Constant)
+--Define
 hi("Delimiter", Delimiter)
+hi("DiagnosticError", { fg = "#ff4700" })
 hi("Error", Error)
 hi("ErrorMsg", Error)
-hi("Identifier", Identifier)
 hi("Float", { link = "Constant" })
 hi("Function", Function)
+hi("Identifier", Identifier)
+--Include
 hi("Keyword", Statement)
+--Label
+--Macro
+--Number
 hi("Operator", Statement)
+--PrecCondit
+--Special
+--SpecialComment
+--StorageClass
 hi("String", { link = "Constant" })
 hi("Structure", Structure)
 hi("Title", Title)
 hi("Type", Type)
+--WarningMsg	Warning messages.
 
-hi("@boolean", { link = "Constant" })
+hi("@boolean", { link = "Boolean" })
 hi("@comment", { link = "Comment" })
 hi("@constant", { link = "Constant" })
-hi("@field", { link = "Identifier" })
+hi("@field", Field)
 hi("@float", { link = "Float" })
 hi("@function", { link = "Function" })
 hi("@keyword", { link = "Keyword" })
@@ -131,7 +159,7 @@ hi("@lsp.type.typeAlias.rust", TypeAlias)
 hi("@lsp.type.typeParameter.rust", { link = "@lsp.type.parameter.rust" })
 hi("@lsp.type.variable.rust", { link = "@variable.rust" })
 hi("@lsp.typemod.attributeBracket.attribute.rust", { link = "Delimiter" })
-hi("@lsp.typemod.builtinAttribute.attribute.rust", { link = "Function" })
+hi("@lsp.typemod.builtinAttribute.attribute.rust", Cfg)
 hi("@lsp.typemod.function.public.rust", { link = "@function.rust" })
 
 -- ~=~ Lua
@@ -222,11 +250,6 @@ NonText		'@' at the end of the window, characters from 'showbreak'
 FloatBorder	Border of floating windows.
 FloatTitle	Title of floating windows.
 
-PmenuKind	Popup menu: Normal item "kind".
-PmenuKindSel	Popup menu: Selected item "kind".
-PmenuExtra	Popup menu: Normal item "extra text".
-PmenuExtraSel	Popup menu: Selected item "extra text".
-
 Question	hit-enter prompt and yes/no questions.
 QuickFixLine	Current quickfix item in the quickfix window. Combined with
 Search		Last search pattern highlighting (see 'hlsearch').
@@ -241,7 +264,6 @@ TabLine		Tab pages line, not active tab page label.
 TabLineFill	Tab pages line, where there are no labels.
 TabLineSel	Tab pages line, active tab page label.
 VisualNOS	Visual mode selection when vim is "Not Owning the Selection".
-WarningMsg	Warning messages.
 Whitespace	"nbsp", "space", "tab", "multispace", "lead" and "trail"
 WildMenu	Current match in 'wildmenu' completion.
 WinBar		Window bar of current window.

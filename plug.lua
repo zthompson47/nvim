@@ -24,15 +24,21 @@ Plug('nvim-telescope/telescope-fzf-native.nvim', {
         'cmake --build build --config Release && ' ..
         'cmake --install build --prefix build'
 })
+Plug 'nvim-lua/lsp-status.nvim'
+--Plug 'nvim-telescope/telescope-ui-select.nvim'
 vim.call('plug#end')
 
-require('colorizer').setup()
+require('colorizer').setup({ '*' }, { mode = 'foreground' })
+vim.keymap.set('n', '<Leader>c', ':ColorizerToggle<CR>')
+
 require('lspconfig').wgsl_analyzer.setup {}
+
 require('mason').setup()
 require('mason-lspconfig').setup {
     automatic_installation = true,
     ensure_installed = { "lua_ls", "rust_analyzer", "wgsl_analyzer" },
 }
+
 require('nvim-treesitter.configs').setup {
     ensure_installed = {
         "c", "css", "html", "javascript", "lua", "python",
@@ -67,6 +73,41 @@ require('telescope').setup {
     }
 }
 require('telescope').load_extension('fzf')
+--require('telescope').load_extension('ui-select')
+
+-- Lsp window borders
+local _border = 'rounded'
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+    vim.lsp.handlers.hover, {
+        border = _border,
+    }
+)
+require('lspconfig.ui.windows').default_options = {
+    border = _border,
+}
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+    vim.lsp.handlers.signature_help, {
+        border = _border
+    }
+)
+vim.diagnostic.config {
+    float = { border = _border }
+}
+
+--[[
+local lsp_status = require('lsp-status')
+lsp_status.register_progress()
+local lspconfig = require('lspconfig')
+lspconfig.rust_analyzer.setup({
+    on_attach = lsp_status.on_attach,
+    capabilities = lsp_status.capabilities,
+})
+vim.api.nvim_create_autocmd('User LspProgress', {
+    callback = function(_)
+        vim.notify(lsp_status.status())
+    end
+})
+]]
 
 require 'lsp/lua'
 require 'lsp/rust'

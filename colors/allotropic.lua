@@ -11,7 +11,7 @@ hi("Normal", { fg = "White", bg = "Black" })
 hi("NormalFloat", { link = "Normal" })
 hi("NormalNC", { link = "Normal" })
 
-hi("BadWhitespace", { bg="Red" })
+hi("BadWhitespace", { bg = "Red" })
 
 -- ~=~ Cursor crosshairs
 hi("ColorColumn", { bg = "#222233" })
@@ -43,20 +43,27 @@ local bold_on = false
 
 -- ~=~ Colors
 local Attribute = { fg = "#aaaaaa" }
+local Bracket = { fg = "#cccccc", bold = bold_on }
 local Cfg = { fg = "#aaaae8" }
 local Comment = { fg = "#a4c8ff" }
 local Constant = { fg = "#ffa4dd" }
 local CrateRoot = { fg = "#ecd9db" }
 local Error = { fg = "#ffffff", bg = "Magenta" }
-local Delimiter = { fg = "Orange", bold = bold_on }
+--local Delimiter = { fg = "Orange", bold = bold_on }
+local Delimiter = { fg = "#ffeecc", bold = bold_on }
+local DocComment = { fg = "Orange" }
 --local Enum = { fg = "#f900a4", bold = bold_on }
 local Enum = { fg = "#ffff00", bold = bold_on }
-local Field = { fg = "#00cc00" }
+--local Field = { fg = "#00cc00" }
+--local Field = { fg = "#00dddd" }
+local FormatSpecifier = { fg = "#aaaaaa" }
 local Function = { fg = "#00afff" }
 local Identifier = { fg = "#40ffff", bold = bold_on }
 local Namespace = { fg = "#cc99fb" }
 local Parameter = { fg = "#88ccff" }
 local PreProc = { fg = "#ff80ff" }
+local Property = { fg = "#ffaa66" }
+local Field = Property
 local Statement = { fg = "#ffff60", bold = bold_on }
 --local Structure = { fg = "#c952ff", bold = true }
 --local Structure = { fg = "#ffaa00", bold = bold_on }
@@ -64,10 +71,14 @@ local Structure = { fg = "#ff8800", bold = bold_on }
 local Title = { fg = "Magenta", bold = bold_on }
 --local Trait = { fg = "#f955a4", bold = bold_on }
 local Trait = { fg = "#00ffff", bold = bold_on }
-local Type = { fg = "#70ef70" }
+--local Type = { fg = "#70ef70" }
+--local Type = { fg = "#30ff4f" }
+local Type = { fg = "#b9f2ff" }
 local TypeAlias = { fg = "#cccccc" }
 --local Variable = { fg = "#ff8800" }
-local Variable = { fg = "#40efff" }
+--local Variable = { fg = "#40efff" }
+--local Variable = { fg = "#10ef2f" }
+local Variable = { fg = "#08df28" }
 
 hi("Boolean", Constant)
 --Character
@@ -88,6 +99,7 @@ hi("Keyword", Statement)
 --Macro
 --Number
 hi("Operator", Statement)
+hi("Property", Property)
 --PrecCondit
 --Special
 --SpecialComment
@@ -109,6 +121,7 @@ hi("@namespace", Namespace)
 hi("@operator", { link = "Operator" })
 hi("@parameter", Parameter)
 hi("@preproc", PreProc)
+hi("@property", Property)
 hi("@punctuation", { link = "Delimiter" })
 hi("@string", { link = "String" })
 hi("@type", { link = "Type" })
@@ -117,9 +130,10 @@ hi("@variable", Variable)
 -- ~=~ Rust
 hi("@boolean.rust", { link = "@boolean" })
 hi("@comment.rust", { link = "@comment" })
+hi("@comment.documentation.rust", DocComment)
 hi("@constant.builtin.rust", { link = "@constant" })
 hi("@constant.rust", { link = "@constant" })
-hi("@field.rust", { link = "@field" })
+hi("@field.rust", { link = "@field" }) -- {})
 hi("@float.rust", { link = "@float" })
 hi("@function.macro.rust", { link = "@preproc" })
 hi("@function.rust", { link = "@function" })
@@ -128,8 +142,9 @@ hi("@keyword.rust", { link = "@keyword" })
 hi("@namespace.rust", { link = "@namespace" })
 hi("@operator.rust", { link = "@operator" })
 hi("@parameter.rust", { link = "@parameter" })
-hi("@punctuation.bracket.rust", { link = "@punctuation" })
-hi("@punctuation.delimiter.rust", { link = "@punctuation" })
+hi("@property.rust", { link = "@property" })
+hi("@punctuation.bracket.rust", Bracket)
+hi("@punctuation.delimiter.rust", { link = "Delimeter" })
 hi("@storageclass.lifetime.rust", { link = "@type" })
 hi("@storageclass.rust", { link = "@type" })
 hi("@string.rust", { link = "@string" })
@@ -147,19 +162,21 @@ hi("@lsp.type.decorator.rust", { link = "Identifier" })
 hi("@lsp.type.derive.rust", { link = "Type" })
 hi("@lsp.type.enum.rust", Enum)
 hi("@lsp.type.enumMember.rust", { link = "@constant.rust" })
+hi("@lsp.type.formatSpecifier.rust", FormatSpecifier)
 hi("@lsp.type.interface.rust", Trait)
 hi("@lsp.type.lifetime.rust", { link = "Type" })
 hi("@lsp.type.macro.rust", PreProc)
 hi("@lsp.type.method.rust", { link = "@function.rust" })
 hi("@lsp.type.namespace.rust", { link = "@namespace.rust" })
 hi("@lsp.type.parameter.rust", { link = "@parameter.rust" })
-hi("@lsp.type.property.rust", { link = "Identifier" })
+hi("@lsp.type.property.rust", {}) -- { link = "@property.rust" })
 hi("@lsp.type.struct.rust", { link = "Structure" })
 hi("@lsp.type.typeAlias.rust", TypeAlias)
 hi("@lsp.type.typeParameter.rust", { link = "@lsp.type.parameter.rust" })
 hi("@lsp.type.variable.rust", { link = "@variable.rust" })
-hi("@lsp.typemod.attributeBracket.attribute.rust", { link = "Delimiter" })
+hi("@lsp.typemod.attributeBracket.attribute.rust", Cfg)
 hi("@lsp.typemod.builtinAttribute.attribute.rust", Cfg)
+hi("@lsp.typemod.comment.documentation.rust", { link = "@comment.documentation.rust" })
 hi("@lsp.typemod.function.public.rust", { link = "@function.rust" })
 
 -- ~=~ Lua
@@ -214,6 +231,8 @@ vim.api.nvim_create_autocmd("LspTokenUpdate", {
 })
 
 --vim.api.nvim_create_autocmd("LspProgressUpdate", {
+--    callback = function()
+--    end
 --})
 
 --[[

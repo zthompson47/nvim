@@ -24,8 +24,7 @@ keymap('<c-i>', vim.lsp.buf.clear_references)
 require('rust-tools').setup({
     tools = {
         inlay_hints = {
-            parameter_hints_prefix = "",
-            --other_hints_prefix = "💩",
+            parameter_hints_prefix = "💩",
             other_hints_prefix = "☀️  ", -- Extra space for font bug
         },
     },

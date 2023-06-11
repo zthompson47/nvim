@@ -21,8 +21,8 @@ hi("CursorLineNr", { bg = "#1b1b2b" })
 
 -- ~=~ Split screen borders
 hi("VertSplit", { fg = "#555555", bg = "#000000" })
-hi("StatusLine", { fg = "#000000", bg = "#555555" })
-hi("StatusLineNC", { fg = "#000000", bg = "#555555" })
+hi("StatusLine", { fg = "#555555", bg = "#000000" })
+hi("StatusLineNC", { fg = "#555555", bg = "#000000" })
 
 -- ~=~ Popup menus
 hi("Pmenu", { bg = "#222222" })
@@ -43,7 +43,7 @@ hi("Visual", { bg = "#444444", bold = true })
 -- ~=~ Ruler highlighting
 hi("User1", { fg = "#ff9988" })
 hi("User2", { fg = "#eedd66" })
-hi("User3", { fg = "#aaaaff" })
+hi("User3", { fg = "#ccccff" })
 
 -- ~=~ Colors
 local Attribute = { fg = "#aaaaaa" }

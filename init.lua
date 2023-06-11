@@ -42,7 +42,7 @@ vim.opt.colorcolumn = "101"
 vim.opt.mouse = "nvi"
 vim.opt.laststatus = 0
 --vim.opt.rulerformat = "%65(%B %t %l/%v %p%%%{LspStatus()}%)"
-vim.opt.rulerformat = "%50(%1*%30F%* %2*%l/%v%* %3*%p%%%*%)"
+vim.opt.rulerformat = "%60(%1*%50F%* %2*%l/%v%* %3*%p%%%*%)"
 -- TODO set shortmess to prevent having to hit Enter with <ctl-g>
 vim.opt.statusline = "%{repeat('─',winwidth('.'))}"
 

@@ -24,7 +24,7 @@ Plug('nvim-telescope/telescope-fzf-native.nvim', {
         'cmake --build build --config Release && ' ..
         'cmake --install build --prefix build'
 })
-Plug 'nvim-lua/lsp-status.nvim'
+--Plug 'nvim-lua/lsp-status.nvim'
 --Plug 'nvim-telescope/telescope-ui-select.nvim'
 vim.call('plug#end')
 
@@ -94,20 +94,28 @@ vim.diagnostic.config {
     float = { border = _border }
 }
 
---[[
-local lsp_status = require('lsp-status')
-lsp_status.register_progress()
-local lspconfig = require('lspconfig')
-lspconfig.rust_analyzer.setup({
-    on_attach = lsp_status.on_attach,
-    capabilities = lsp_status.capabilities,
-})
-vim.api.nvim_create_autocmd('User LspProgress', {
-    callback = function(_)
-        vim.notify(lsp_status.status())
-    end
-})
-]]
+--local lsp_status = require('lsp-status')
+--lsp_status.register_progress()
+--local lspconfig = require('lspconfig')
+--lspconfig.rust_analyzer.setup({
+--    on_attach = lsp_status.on_attach,
+--    capabilities = lsp_status.capabilities,
+--})
+
+--vim.api.nvim_exec(
+--    [[
+--function! LspStatus() abort
+--    if luaeval('#vim.lsp.buf_get_clients() > 0')
+--        return luaeval("require('lsp-status').status()")
+--    endif
+--    return ''
+--endfunction
+--]], false)
+--vim.api.nvim_create_autocmd('User LspProgress', {
+--    callback = function(_)
+--        vim.notify(lsp_status.status())
+--    end
+--})
 
 require 'lsp/lua'
 require 'lsp/rust'

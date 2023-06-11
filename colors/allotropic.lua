@@ -40,6 +40,11 @@ hi("SignColumn", { bg = "Black" })
 hi("Todo", { fg = "Blue", bg = "Yellow" })
 hi("Visual", { bg = "#444444", bold = true })
 
+-- ~=~ Ruler highlighting
+hi("User1", { fg = "#ff9988" })
+hi("User2", { fg = "#eedd66" })
+hi("User3", { fg = "#aaaaff" })
+
 -- ~=~ Colors
 local Attribute = { fg = "#aaaaaa" }
 local Bracket = { fg = "#cccccc" }

@@ -42,7 +42,7 @@ vim.opt.colorcolumn = "101"
 vim.opt.mouse = "nvi"
 vim.opt.laststatus = 0
 --vim.opt.rulerformat = "%65(%B %t %l/%v %p%%%{LspStatus()}%)"
-vim.opt.rulerformat = "%50(%30F %l/%v %p%%%)"
+vim.opt.rulerformat = "%50(%1*%30F%* %2*%l/%v%* %3*%p%%%*%)"
 -- TODO set shortmess to prevent having to hit Enter with <ctl-g>
 vim.opt.statusline = "%{repeat('─',winwidth('.'))}"
 
@@ -63,7 +63,7 @@ vim.cmd.nnoremap("z, :LspStop<CR>")
 
 -- Toggle ruler
 vim.keymap.set('n', '<c-g>', function()
-    print("wtf") -- FIXME: with this print, ruler reappears blank
+    print("wtf") -- FIXME: without this print, ruler reappears blank
     if vim.opt.cmdheight:get() == 0 then
         vim.opt.cmdheight = 1
     elseif vim.opt.cmdheight:get() == 1 then

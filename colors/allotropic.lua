@@ -15,6 +15,7 @@ hi("BadWhitespace", { bg = "Red" })
 
 -- ~=~ Cursor crosshairs
 hi("ColorColumn", { bg = "#222233" })
+hi("CursorColumn", { bg = "#111116" })
 hi("CursorLine", { bg = "#1b1b2b" })
 hi("CursorLineNr", { bg = "#1b1b2b" })
 
@@ -37,40 +38,38 @@ hi("EndOfBuffer", { fg = "Magenta" })
 hi("ErrorMsg", { bg = "#444444", bold = true, fg = "Yellow" })
 hi("SignColumn", { bg = "Black" })
 hi("Todo", { fg = "Blue", bg = "Yellow" })
-hi("Visual", { bg = "#444444" })
-
-local bold_on = false
+hi("Visual", { bg = "#444444", bold = true })
 
 -- ~=~ Colors
 local Attribute = { fg = "#aaaaaa" }
-local Bracket = { fg = "#cccccc", bold = bold_on }
+local Bracket = { fg = "#cccccc" }
 local Cfg = { fg = "#aaaae8" }
 local Comment = { fg = "#a4c8ff" }
 local Constant = { fg = "#ffa4dd" }
 local CrateRoot = { fg = "#ecd9db" }
-local Error = { fg = "#ffffff", bg = "Magenta" }
---local Delimiter = { fg = "Orange", bold = bold_on }
-local Delimiter = { fg = "#ffeecc", bold = bold_on }
+local Error = { fg = "#ffff66", bg = "#660000" }
+--local Delimiter = { fg = "Orange" }
+local Delimiter = { fg = "#ffeecc" }
 local DocComment = { fg = "Orange" }
---local Enum = { fg = "#f900a4", bold = bold_on }
-local Enum = { fg = "#ffff00", bold = bold_on }
+--local Enum = { fg = "#f900a4" }
+local Enum = { fg = "#ffff00" }
 --local Field = { fg = "#00cc00" }
 --local Field = { fg = "#00dddd" }
 local FormatSpecifier = { fg = "#aaaaaa" }
 local Function = { fg = "#00afff" }
-local Identifier = { fg = "#40ffff", bold = bold_on }
+local Identifier = { fg = "#40ffff" }
 local Namespace = { fg = "#cc99fb" }
 local Parameter = { fg = "#88ccff" }
 local PreProc = { fg = "#ff80ff" }
 local Property = { fg = "#ffaa66" }
 local Field = Property
-local Statement = { fg = "#ffff60", bold = bold_on }
---local Structure = { fg = "#c952ff", bold = true }
---local Structure = { fg = "#ffaa00", bold = bold_on }
-local Structure = { fg = "#ff8800", bold = bold_on }
-local Title = { fg = "Magenta", bold = bold_on }
---local Trait = { fg = "#f955a4", bold = bold_on }
-local Trait = { fg = "#00ffff", bold = bold_on }
+local Statement = { fg = "#ffff60" }
+--local Structure = { fg = "#c952ff" }
+--local Structure = { fg = "#ffaa00" }
+local Structure = { fg = "#ff8800" }
+local Title = { fg = "Magenta" }
+--local Trait = { fg = "#f955a4" }
+local Trait = { fg = "#00ffff" }
 --local Type = { fg = "#70ef70" }
 --local Type = { fg = "#30ff4f" }
 local Type = { fg = "#b9f2ff" }
@@ -85,6 +84,7 @@ hi("Boolean", Constant)
 hi("Comment", Comment)
 -- Conditional
 hi("Constant", Constant)
+--hi("Cursor", { bg = "Orange", fg = "White", bold = true })
 --Define
 hi("Delimiter", Delimiter)
 hi("DiagnosticError", { fg = "#ff4700" })
@@ -238,10 +238,8 @@ vim.api.nvim_create_autocmd("LspTokenUpdate", {
 --[[
 Conceal		Placeholder characters substituted for concealed
 CurSearch	Used for highlighting a search pattern under the cursor
-Cursor		Character under the cursor.
 lCursor		Character under the cursor when language-mapping
 CursorIM	Like Cursor, but used when in IME mode. CursorIM
-CursorColumn	Screen-column at the cursor, when 'cursorcolumn' is set.
 Directory	Directory names (and other special names in listings).
 DiffAdd		Diff mode: Added line. diff.txt
 DiffChange	Diff mode: Changed line. diff.txt
